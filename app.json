@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "NovoiceApp",
+    "slug": "novoiceapp-android",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.novoice.app"
+    },
+    "web": {}
+  }
+}
