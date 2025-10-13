@@ -33,7 +33,6 @@ const uploadRecording = async (uri: string) => {
 const RecordScreen: React.FC = () => {
   const user = useSessionStore((state) => state.user);
   const addPost = useFeedStore((state) => state.addPost);
-  const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const recordingRef = useRef<Audio.Recording | null>(null);
   const [duration, setDuration] = useState(0);
   const [recordingUri, setRecordingUri] = useState<string | null>(null);
@@ -64,7 +63,6 @@ const RecordScreen: React.FC = () => {
     if (activeRecording) {
       activeRecording.stopAndUnloadAsync().catch(() => undefined);
     }
-    setRecording(null);
     setDuration(0);
     setRecordingUri(null);
     recordingRef.current = null;
@@ -92,7 +90,6 @@ const RecordScreen: React.FC = () => {
       console.warn('Failed to stop recording', err);
       Alert.alert('Recording error', 'Unable to stop recording. Please try again.');
     }
-    setRecording(null);
     recordingRef.current = null;
   }, []);
 
@@ -122,7 +119,6 @@ const RecordScreen: React.FC = () => {
       });
       recordingRef.current = newRecording;
       await newRecording.startAsync();
-      setRecording(newRecording);
       setStatusMessage('Recording… release to stop');
     } catch (err) {
       console.warn('Failed to start recording', err);

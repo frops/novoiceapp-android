@@ -1,5 +1,4 @@
 module.exports = {
-  root: true,
   env: {
     es2021: true,
     node: true,
@@ -20,9 +19,33 @@ module.exports = {
     }
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
-  ignorePatterns: ['node_modules/', 'dist/', 'build/'],
+  ignorePatterns: [
+    'node_modules/',
+    'dist/',
+    'build/',
+    'android/',
+    'ios/',
+    'assets/',
+    '**/*.png',
+    '**/*.jpg',
+    '**/*.jpeg',
+    '**/*.gif',
+    '**/*.webp',
+    '**/*.svg',
+    '**/*.mp3',
+    '**/*.m4a',
+    '**/*.wav',
+    '**/*.caf',
+    '**/*.ttf',
+    '**/*.otf'
+  ],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true }
+    ]
   }
 };
