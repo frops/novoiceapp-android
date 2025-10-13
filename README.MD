@@ -31,38 +31,19 @@ A React Native (Expo) application for Novoice that delivers an authenticated, vo
 
 ## Getting Started
 
-1. Install dependencies (requires Node.js 18+ and npm or yarn). The versions in `package.json` are aligned with Expo SDK 51's
-   "expected" set, so reinstall if you previously installed older packages:
+1. Install dependencies (requires Node.js 18+ and npm or yarn):
 
    ```bash
    npm install
    ```
 
-2. If you are on macOS or Linux, raise your file descriptor limit before starting Expo to avoid `EMFILE: too many open files`
-   watcher errors (Windows users can skip this step):
-
-   ```bash
-   # macOS (zsh/bash)
-   ulimit -n 8192
-
-   # Linux (requires sudo, run once)
-   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
-   sudo sysctl -p
-   ```
-
-3. Start the Expo development server:
+2. Start the Expo development server:
 
    ```bash
    npm run start
    ```
 
-4. Choose the Android option in the Expo CLI to launch the app on a connected device or emulator.
-
-### Troubleshooting Expo watcher limits
-
-If you still see `EMFILE: too many open files` after increasing the limits above, install [Watchman](https://facebook.github.io/watchman/)
-and re-run `npm run start`. Watchman replaces Node's file watchers and significantly reduces the descriptor count that Metro/Expo
-require.
+3. Choose the Android option in the Expo CLI to launch the app on a connected device or emulator.
 
 ### Mock backend services
 
