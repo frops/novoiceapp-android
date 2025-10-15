@@ -87,6 +87,17 @@ If integrating with a real backend, replace the mock presigned upload logic in `
 - `npm run ios` – Launch the app on iOS simulator (requires macOS).
 - `npm run web` – Start Expo for web preview.
 - `npm run lint` – Run ESLint once configured.
+- `npm test` – Execute Jest UI tests for the core screens and flows.
+
+## Testing
+
+UI coverage is implemented with Jest and React Native Testing Library. The suite focuses on the primary flows for authentication, feed consumption, recording, profile management, and settings. Run the tests locally with:
+
+```bash
+npm test
+```
+
+If you install new Expo modules that rely on native APIs, extend the mocks in `jest.setup.ts` so the components remain testable in Node.
 
 ## Continuous Integration
 
@@ -97,4 +108,3 @@ GitHub Actions run `npm run lint` for pushes and pull requests targeting `main` 
 - Authentication uses a mock magic-link flow with secure token persistence via `expo-secure-store`.
 - Audio playback and recording use `expo-av`. Ensure microphone permissions are granted during testing.
 - Global app state leverages Zustand stores (`src/state`).
-
