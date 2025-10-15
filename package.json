@@ -8,7 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint --ext .js,.ts,.tsx App.tsx src"
+    "lint": "eslint --ext .js,.ts,.tsx App.tsx src",
+    "postinstall": "node scripts/metro-file-store-patch.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
@@ -16,6 +17,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.24",
     "expo": "~54.0.0",
+    "expo-asset": "~12.0.9",
     "expo-av": "~14.0.6",
     "expo-file-system": "~17.0.1",
     "expo-image-picker": "~15.0.7",
@@ -30,11 +32,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
-    "babel-preset-expo": "^10.0.1",
     "@expo/metro-config": "^0.17.5",
     "@types/react": "18.2.48",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
+    "babel-preset-expo": "^10.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
