@@ -24,6 +24,9 @@
 - Until then, validate manual flows: Expo Go launch, authentication mock, audio record/playback, and profile updates.
 - Document new testing steps in `README.MD` whenever you introduce features that require regression coverage.
 
+## Documentation
+- Screen responsibilities and user flows are described in `docs/screen-spec.md`. Refer to this spec when planning or reviewing feature work.
+
 ## Commit & Pull Request Guidelines
 - Use concise, imperative commit subjects (e.g., `Add feed pagination store`) and group related file changes together.
 - Explain context in the body when the why is not obvious; reference Linear/Jira issue IDs where relevant.

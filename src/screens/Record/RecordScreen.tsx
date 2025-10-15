@@ -194,6 +194,7 @@ const RecordScreen: React.FC = () => {
         <Text style={styles.heading}>Record a voice update</Text>
         <Text style={styles.subHeading}>{statusMessage}</Text>
         <Pressable
+          testID="record-button"
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
           style={({ pressed }) => [styles.recordButton, pressed ? styles.recordButtonActive : null]}
