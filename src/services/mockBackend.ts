@@ -24,7 +24,7 @@ const simulateNetwork = async (delay = 300) =>
 const randomCode = () => Math.floor(100000 + Math.random() * 900000).toString();
 
 const sampleAudio =
-  'https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav';
+  'https://github.com/SergLam/Audio-Sample-files/raw/master/sample.wav';
 
 export class MockBackend {
   private users = new Map<string, SessionUser>();
