@@ -101,7 +101,7 @@ If you install new Expo modules that rely on native APIs, extend the mocks in `j
 
 ## Continuous Integration
 
-GitHub Actions run `npm run lint` for pushes and pull requests targeting `main` or `develop` to ensure TypeScript/JavaScript code style stays consistent. See `.github/workflows/ci.yml` for details.
+GitHub Actions run `npm run lint` and `npm test` for pushes and pull requests targeting `main` or `develop` to ensure code quality and UI flows stay healthy. See `.github/workflows/ci.yml` for details.
 
 ## Environment Notes
 
