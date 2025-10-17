@@ -15,7 +15,7 @@ A React Native (Expo) application for Novoice that delivers an authenticated, vo
 │       ├── record.tsx
 │       ├── profile.tsx
 │       └── settings.tsx
-├── app.json
+├── app.config.ts
 ├── src/
 │   ├── components/audio/Player.tsx
 │   ├── screens/
@@ -170,10 +170,17 @@ If the workflows fail locally, reproduce the checks with `npm run lint`, `npx ts
 
 ## EAS Build & Deployment
 
-`eas.json` defines two build profiles:
+`app.config.ts` selects platform identifiers based on the `APP_VARIANT` environment variable so development, preview, and production binaries can coexist on devices. The variant also flows into the Expo manifest via `extra.appVariant` for runtime toggles.
 
-- `preview` – Generates internal preview binaries (Android APK and iOS simulator) for feature validation on the `develop` branch.
-- `production` – Produces store-ready artifacts (Android App Bundle and iOS archive) that ship off the `main` branch.
+`eas.json` defines three build profiles:
+
+- `development` – Creates a development client with the `com.novoice.app.dev` bundle identifier for local testing.
+- `preview` – Generates internal preview binaries (Android APK and iOS simulator) using the `com.novoice.app.preview` identifier for feature validation on the `develop` branch.
+- `production` – Produces store-ready artifacts (Android App Bundle and iOS archive) with the `com.novoice.app` identifier that ship off the `main` branch.
+
+Each profile sets `APP_VARIANT` so iOS bundle identifiers and Android application IDs remain unique, allowing all three builds to install side-by-side. When running `expo start`, pass `APP_VARIANT=development` (or the desired variant) to preview the corresponding configuration locally.
+
+To install preview or production builds on devices that already have a different variant, uninstall only the matching variant (`Novoice`, `Novoice (Preview)`, or `Novoice (Dev)`). The others remain unaffected because of the distinct identifiers.
 
 The EAS workflow authenticates using an Expo access token stored as the `EXPO_TOKEN` GitHub secret. Create this token with the minimal scopes required for EAS Build, and rotate it regularly. Any additional credentials (service accounts, signing keys, etc.) should be uploaded to Expo via `eas credentials` or referenced through encrypted GitHub Secrets—never commit them to the repository.
 
