@@ -39,6 +39,10 @@ Expo Router powers navigation using the files under `app/`, while shared UI and 
 
 > **Note:** Binary branding assets are intentionally excluded so this repository stays text-only. Add your own icons, splash imagery, or favicons locally under an `assets/` directory when building release binaries.
 
+## Native project configuration
+
+This repository tracks only the managed Expo project. The native `android/` and `ios/` directories are ignored so all platform-specific changes flow through Expo config plugins and EAS Build profiles. When a new native capability is required, add the corresponding config plugin (either from the Expo SDK or a custom plugin under `plugins/`) and ensure the change is reflected in `app.json`/`app.config.ts`. EAS Build will materialize the full native projects during CI or local builds based on these declarative settings.
+
 ## Getting Started
 
 1. Install dependencies (requires Node.js 18+ and npm or yarn):
