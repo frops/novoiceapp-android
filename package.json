@@ -16,7 +16,8 @@
     "lint": "eslint --ext .js,.ts,.tsx App.tsx src",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "test": "jest",
-    "postinstall": "node scripts/metro-file-store-patch.js"
+    "postinstall": "node scripts/metro-file-store-patch.js",
+    "version:bump": "node scripts/increment-build-number.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",

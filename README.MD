@@ -16,6 +16,7 @@ A React Native (Expo) application for Novoice that delivers an authenticated, vo
 │       ├── profile.tsx
 │       └── settings.tsx
 ├── app.config.ts
+├── app.json
 ├── src/
 │   ├── components/audio/Player.tsx
 │   ├── screens/
@@ -135,6 +136,7 @@ If integrating with a real backend, replace the mock presigned upload logic in `
 - `npm run lint` – Run ESLint once configured.
 - `npm run format` – Format source files with Prettier.
 - `npm test` – Execute Jest UI tests for the core screens and flows.
+- `npm run version:bump` – Increment platform-specific build numbers stored in `app/versioning.json`.
 - `npx tsc --noEmit` – Type-check the project; this runs automatically in CI but is useful before pushing.
 
 ## Formatting Workflow
@@ -183,6 +185,10 @@ Each profile sets `APP_VARIANT` so iOS bundle identifiers and Android applicatio
 To install preview or production builds on devices that already have a different variant, uninstall only the matching variant (`Novoice`, `Novoice (Preview)`, or `Novoice (Dev)`). The others remain unaffected because of the distinct identifiers.
 
 The EAS workflow authenticates using an Expo access token stored as the `EXPO_TOKEN` GitHub secret. Create this token with the minimal scopes required for EAS Build, and rotate it regularly. Any additional credentials (service accounts, signing keys, etc.) should be uploaded to Expo via `eas credentials` or referenced through encrypted GitHub Secrets—never commit them to the repository.
+
+### Release management
+
+Follow the step-by-step guide in [`docs/release-process.md`](docs/release-process.md) when preparing store submissions. The checklist explains how semantic versions, automated build number increments, and EAS build hooks work together so each release remains unique across Android and iOS.
 
 ## Environment Notes
 

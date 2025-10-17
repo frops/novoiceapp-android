@@ -43,5 +43,10 @@
   },
   "submit": {
     "production": {}
+  },
+  "hooks": {
+    "pre-build": {
+      "command": "node scripts/increment-build-number.js --platform=$EAS_BUILD_PLATFORM"
+    }
   }
 }
