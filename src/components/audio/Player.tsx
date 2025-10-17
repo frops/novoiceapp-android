@@ -16,7 +16,7 @@ const formatTime = (millis: number) => {
   return `${minutes}:${seconds}`;
 };
 
-const Player: React.FC = () => {
+export function Player(): React.JSX.Element | null {
   const currentTrack = usePlayerStore((state) => state.currentTrack);
   const isPlaying = usePlayerStore((state) => state.isPlaying);
   const positionMillis = usePlayerStore((state) => state.positionMillis);
@@ -71,7 +71,7 @@ const Player: React.FC = () => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -136,5 +136,3 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   }
 });
-
-export default Player;

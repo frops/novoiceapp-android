@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSessionStore } from '../../state/session';
 
-const SettingsScreen: React.FC = () => {
+export function SettingsScreen(): React.JSX.Element {
   const logout = useSessionStore((state) => state.logout);
   const token = useSessionStore((state) => state.token);
 
@@ -40,7 +40,7 @@ const SettingsScreen: React.FC = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -100,5 +100,3 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums']
   }
 });
-
-export default SettingsScreen;

@@ -1,6 +1,7 @@
 import React from 'react';
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
-import FeedScreen from './FeedScreen';
+import { FeedScreen } from './FeedScreen';
 
 type FeedSlice = {
   posts: any[];
@@ -51,7 +52,9 @@ jest.mock('../../state/player', () => ({
   usePlayerStore: (selector: any) => selector(mockPlayerState)
 }));
 
-jest.mock('../../components/audio/Player', () => jest.fn(() => null));
+jest.mock('../../components/audio/Player', () => ({
+  Player: jest.fn(() => null)
+}));
 
 describe('FeedScreen', () => {
   beforeEach(() => {

@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { View, ActivityIndicator } from 'react-native';
-import LoginScreen from '../screens/Auth/LoginScreen';
-import FeedScreen from '../screens/Feed/FeedScreen';
-import RecordScreen from '../screens/Record/RecordScreen';
-import ProfileScreen from '../screens/Profile/ProfileScreen';
-import SettingsScreen from '../screens/Settings/SettingsScreen';
+import { LoginScreen } from '../screens/Auth/LoginScreen';
+import { FeedScreen } from '../screens/Feed/FeedScreen';
+import { RecordScreen } from '../screens/Record/RecordScreen';
+import { ProfileScreen } from '../screens/Profile/ProfileScreen';
+import { SettingsScreen } from '../screens/Settings/SettingsScreen';
 import { useSessionStore } from '../state/session';
 
 export type RootStackParamList = {
