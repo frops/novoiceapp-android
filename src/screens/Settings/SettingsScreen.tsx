@@ -1,10 +1,23 @@
 import React from 'react';
 import { Alert, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import * as Application from 'expo-application';
 import { useSessionStore } from '../../state/session';
 
 const SettingsScreen: React.FC = () => {
   const logout = useSessionStore((state) => state.logout);
   const token = useSessionStore((state) => state.token);
+
+  const nativeVersion = React.useMemo(() => {
+    return (
+      Application.nativeApplicationVersion ??
+      Application.applicationVersion ??
+      'Unknown'
+    );
+  }, []);
+
+  const nativeBuild = React.useMemo(() => {
+    return Application.nativeBuildVersion ?? 'Unknown';
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -34,9 +47,19 @@ const SettingsScreen: React.FC = () => {
           <Text style={[styles.rowAction, styles.danger]}>↗</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.meta}>
-        <Text style={styles.metaText}>Session token preview:</Text>
-        <Text style={styles.metaValue}>{token ? `${token.slice(0, 12)}…` : 'Not signed in'}</Text>
+      <View style={styles.metaGroup}>
+        <View style={styles.meta}>
+          <Text style={styles.metaText}>App version</Text>
+          <Text style={styles.metaValue}>{nativeVersion}</Text>
+        </View>
+        <View style={styles.meta}>
+          <Text style={styles.metaText}>Build number</Text>
+          <Text style={styles.metaValue}>{nativeBuild}</Text>
+        </View>
+        <View style={styles.meta}>
+          <Text style={styles.metaText}>Session token preview</Text>
+          <Text style={styles.metaValue}>{token ? `${token.slice(0, 12)}…` : 'Not signed in'}</Text>
+        </View>
       </View>
     </View>
   );
@@ -93,6 +116,9 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     backgroundColor: '#e2e8f0'
+  },
+  metaGroup: {
+    gap: 12
   },
   metaText: {
     color: '#475569',
