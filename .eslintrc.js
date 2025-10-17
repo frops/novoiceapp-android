@@ -53,5 +53,13 @@ module.exports = {
       'warn',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: ['**/*.test.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
+      env: {
+        jest: true
+      }
+    }
+  ]
 };

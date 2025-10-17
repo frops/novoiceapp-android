@@ -119,6 +119,10 @@ npm test
 
 If you install new Expo modules that rely on native APIs, extend the mocks in `jest.setup.ts` so the components remain testable in Node.
 
+### Runtime error recovery
+
+Rendering errors surfaced from the navigation tree are captured by the reusable `src/components/ErrorBoundary.tsx`. The fallback UI offers **Try again** and **Reset app** actions that remount the app shell so users can recover without a full reload. Automated coverage for these flows lives in `src/components/ErrorBoundary.test.tsx`; the scenarios run alongside the regular Jest suite (`npm test`).
+
 ## Continuous Integration
 
 GitHub Actions run for pushes and pull requests targeting `main` or `develop` to ensure code quality stays healthy:
