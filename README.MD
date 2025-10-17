@@ -6,10 +6,18 @@ A React Native (Expo) application for Novoice that delivers an authenticated, vo
 
 ```
 ├── App.tsx
+├── app/
+│   ├── _layout.tsx
+│   ├── login.tsx
+│   └── (tabs)/
+│       ├── _layout.tsx
+│       ├── index.tsx
+│       ├── record.tsx
+│       ├── profile.tsx
+│       └── settings.tsx
 ├── app.json
 ├── src/
 │   ├── components/audio/Player.tsx
-│   ├── navigation/RootNavigator.tsx
 │   ├── screens/
 │   │   ├── Auth/LoginScreen.tsx
 │   │   ├── Feed/FeedScreen.tsx
@@ -26,6 +34,8 @@ A React Native (Expo) application for Novoice that delivers an authenticated, vo
 │       └── models.ts
 └── ...
 ```
+
+Expo Router powers navigation using the files under `app/`, while shared UI and state live within `src/`.
 
 > **Note:** Binary branding assets are intentionally excluded so this repository stays text-only. Add your own icons, splash imagery, or favicons locally under an `assets/` directory when building release binaries.
 
