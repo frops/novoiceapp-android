@@ -99,6 +99,7 @@ If integrating with a real backend, replace the mock presigned upload logic in `
 - `npm run lint` – Run ESLint once configured.
 - `npm run format` – Format source files with Prettier.
 - `npm test` – Execute Jest UI tests for the core screens and flows.
+- `npx tsc --noEmit` – Type-check the project; this runs automatically in CI but is useful before pushing.
 
 ## Formatting Workflow
 
@@ -120,7 +121,21 @@ If you install new Expo modules that rely on native APIs, extend the mocks in `j
 
 ## Continuous Integration
 
-GitHub Actions run `npm run lint` and `npm test` for pushes and pull requests targeting `main` or `develop` to ensure code quality and UI flows stay healthy. See `.github/workflows/ci.yml` for details.
+GitHub Actions run for pushes and pull requests targeting `main` or `develop` to ensure code quality stays healthy:
+
+- `.github/workflows/ci.yml` installs dependencies, runs the TypeScript compiler in no-emit mode, lints the project, and executes Jest tests.
+- `.github/workflows/eas-build.yml` provisions Expo/EAS and, when branches are protected, triggers the appropriate EAS build profile (preview for `develop`, production for `main`). Manual runs are also supported via the **Run workflow** button for ad-hoc builds.
+
+If the workflows fail locally, reproduce the checks with `npm run lint`, `npx tsc --noEmit`, and `npm test` before re-running the pipeline.
+
+## EAS Build & Deployment
+
+`eas.json` defines two build profiles:
+
+- `preview` – Generates internal preview binaries (Android APK and iOS simulator) for feature validation on the `develop` branch.
+- `production` – Produces store-ready artifacts (Android App Bundle and iOS archive) that ship off the `main` branch.
+
+The EAS workflow authenticates using an Expo access token stored as the `EXPO_TOKEN` GitHub secret. Create this token with the minimal scopes required for EAS Build, and rotate it regularly. Any additional credentials (service accounts, signing keys, etc.) should be uploaded to Expo via `eas credentials` or referenced through encrypted GitHub Secrets—never commit them to the repository.
 
 ## Environment Notes
 
