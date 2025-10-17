@@ -55,6 +55,12 @@ Expo Router powers navigation using the files under `app/`, while shared UI and 
 
 3. Choose the Android option in the Expo CLI to launch the app on a connected device or emulator.
 
+### Dependency management
+
+- **Always install native modules with Expo's compatibility layer:** run `npx expo install <package>` instead of `npm install <package>` so the version recorded in `package.json` matches the Expo SDK 54 bundle. This keeps React Native, Expo, and unimodule APIs in sync with the managed workflow.
+- After changing dependencies, run `npm run lint`, `npx tsc --noEmit`, and `npm test` to confirm the upgrade did not break the TypeScript types, lint rules, or Jest suite. Consider wiring these into a pre-commit hook (e.g., `npx simple-git-hooks`) if you update packages frequently.
+- When aligning existing versions, consult `node_modules/expo/bundledNativeModules.json` or re-run `npx expo install` for each package to adopt the recommended semver range before pushing.
+
 ### Mock backend services
 
 The client ships with an in-memory mock backend (`src/services/mockBackend.ts`) that simulates:
