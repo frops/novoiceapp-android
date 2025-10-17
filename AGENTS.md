@@ -4,7 +4,7 @@
 - `App.tsx` bootstraps navigation and shell UI, delegating to feature screens in `src/screens/`.
 - Shared hooks, stores, and utilities live in `src/state/`, `src/services/`, and `src/types/`.
 - Reusable UI primitives (player, buttons) sit under `src/components/`.
-- Metro and Expo configuration lives in `metro.config.js`, `app.json`, and `scripts/metro-file-store-patch.js` (postinstall patcher). Keep custom scripts here, not in `src/`.
+- Metro and Expo configuration lives in `metro.config.js`, `app.config.ts`, and `scripts/metro-file-store-patch.js` (postinstall patcher). Keep custom scripts here, not in `src/`.
 - Assets are intentionally not versioned; add local files under `assets/` when you need to test branding or audio.
 
 ## Build, Test, and Development Commands

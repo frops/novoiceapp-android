@@ -3,9 +3,26 @@
     "version": ">= 3.19.0"
   },
   "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "APP_VARIANT": "development"
+      },
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
+      "env": {
+        "APP_VARIANT": "preview"
+      },
       "android": {
         "buildType": "apk"
       },
@@ -16,6 +33,9 @@
     "production": {
       "distribution": "store",
       "channel": "production",
+      "env": {
+        "APP_VARIANT": "production"
+      },
       "android": {
         "buildType": "app-bundle"
       }
@@ -23,5 +43,10 @@
   },
   "submit": {
     "production": {}
+  },
+  "hooks": {
+    "pre-build": {
+      "command": "node scripts/increment-build-number.js --platform=$EAS_BUILD_PLATFORM"
+    }
   }
 }

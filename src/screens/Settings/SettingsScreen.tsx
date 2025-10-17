@@ -65,6 +65,9 @@ const SettingsScreen: React.FC = () => {
   );
 };
 
+export { SettingsScreen };
+export default SettingsScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -126,5 +129,3 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums']
   }
 });
-
-export default SettingsScreen;

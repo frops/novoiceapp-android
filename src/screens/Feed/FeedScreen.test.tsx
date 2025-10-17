@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import FeedScreen from './FeedScreen';
@@ -51,7 +52,9 @@ jest.mock('../../state/player', () => ({
   usePlayerStore: (selector: any) => selector(mockPlayerState)
 }));
 
-jest.mock('../../components/audio/Player', () => jest.fn(() => null));
+jest.mock('../../components/audio/Player', () => ({
+  Player: jest.fn(() => null)
+}));
 
 describe('FeedScreen', () => {
   beforeEach(() => {

@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import React from 'react';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Audio } from 'expo-av';
