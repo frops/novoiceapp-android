@@ -104,6 +104,8 @@ export function FeedScreen(): React.JSX.Element {
   );
 }
 
+export default FeedScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

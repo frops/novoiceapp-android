@@ -222,6 +222,8 @@ export function RecordScreen(): React.JSX.Element {
   );
 }
 
+export default RecordScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

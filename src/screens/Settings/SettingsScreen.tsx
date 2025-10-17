@@ -42,6 +42,8 @@ export function SettingsScreen(): React.JSX.Element {
   );
 }
 
+export default SettingsScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

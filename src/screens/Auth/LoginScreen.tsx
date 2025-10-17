@@ -114,6 +114,8 @@ export function LoginScreen(): React.JSX.Element {
   );
 }
 
+export default LoginScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

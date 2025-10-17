@@ -73,6 +73,8 @@ export function Player(): React.JSX.Element | null {
   );
 }
 
+export default Player;
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',

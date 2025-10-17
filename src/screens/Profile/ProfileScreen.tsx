@@ -175,6 +175,8 @@ export function ProfileScreen(): React.JSX.Element {
   );
 }
 
+export default ProfileScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
