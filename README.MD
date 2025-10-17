@@ -47,13 +47,39 @@ Expo Router powers navigation using the files under `app/`, while shared UI and 
    npm install
    ```
 
-2. Start the Expo development server:
+2. Install the Expo Dev Client dependency so native modules resolve correctly:
 
    ```bash
-   npm run start
+   npx expo install expo-dev-client
    ```
 
-3. Choose the Android option in the Expo CLI to launch the app on a connected device or emulator.
+   > **Why now?** Installing the dev client during onboarding ensures everyone moves off Expo Go before hitting APIs that require native modules.
+
+3. Build and install a native development client for your platform (the project ships with helper scripts):
+
+   ```bash
+   npm run build:dev:android
+   # or
+   npm run build:dev:ios
+   ```
+
+   Follow the prompts to install the resulting binary on your emulator or device, then launch it once to register with Metro.
+
+4. Start the Expo development server with dev-client support:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Use the platform-specific shortcuts to open the dev client directly:
+
+   ```bash
+   npm run dev:android
+   # or
+   npm run dev:ios
+   ```
+
+   These commands bypass Expo Go entirely and attach Metro to the installed dev client. See [`docs/native-dev-builds.md`](docs/native-dev-builds.md) for end-to-end instructions, including how to produce local EAS builds when native dependencies change.
 
 ### Mock backend services
 
