@@ -119,6 +119,10 @@ npm test
 
 If you install new Expo modules that rely on native APIs, extend the mocks in `jest.setup.ts` so the components remain testable in Node.
 
+## Support Playbook
+
+Refer to `docs/support-procedures.md` for the version-verification checklist support agents should follow when assisting end users. The Settings screen now exposes the native app version and build number to make it easy to confirm the install state before escalating issues.
+
 ### Runtime error recovery
 
 Rendering errors surfaced from the navigation tree are captured by the reusable `src/components/ErrorBoundary.tsx`. The fallback UI offers **Try again** and **Reset app** actions that remount the app shell so users can recover without a full reload. Automated coverage for these flows lives in `src/components/ErrorBoundary.test.tsx`; the scenarios run alongside the regular Jest suite (`npm test`).
@@ -140,6 +144,10 @@ If the workflows fail locally, reproduce the checks with `npm run lint`, `npx ts
 - `production` – Produces store-ready artifacts (Android App Bundle and iOS archive) that ship off the `main` branch.
 
 The EAS workflow authenticates using an Expo access token stored as the `EXPO_TOKEN` GitHub secret. Create this token with the minimal scopes required for EAS Build, and rotate it regularly. Any additional credentials (service accounts, signing keys, etc.) should be uploaded to Expo via `eas credentials` or referenced through encrypted GitHub Secrets—never commit them to the repository.
+
+### Over-the-air Updates
+
+The client now bundles `expo-updates` for OTA delivery. Set the `extra.eas.projectId` field in `app.json` to the UUID generated for this project in the Expo dashboard (replace the `REPLACE_WITH_PROJECT_ID` placeholder). Publish updates to the desired channel using `eas update --branch <branch>`; devices will fetch them on launch and when returning to the foreground. Users receive an in-app prompt to restart once a new bundle is downloaded.
 
 ## Environment Notes
 
