@@ -4,7 +4,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   watchman: false,
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|expo(nent)?|@expo|@expo/vector-icons|expo-modules-core|unimodules|@unimodules|@react-navigation)/)'
+    'node_modules/(?!(react-native|@react-native|expo(nent)?|@expo|@expo/vector-icons|expo-modules-core|unimodules|@unimodules)/)'
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
