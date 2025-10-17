@@ -3,8 +3,8 @@
 This document provides an implementation-facing specification for the current Expo/React Native application. It describes the role of each screen, the supporting state, and the primary user journeys the app supports.
 
 ## Navigation Shell
-- **RootNavigator** (`src/navigation/RootNavigator.tsx`): Initializes the session store on launch. Presents either the authenticated tab shell or the unauthenticated login flow based on `session.status`.
-- **Main Tab Bar**: Four tabs (`Feed`, `Record`, `Profile`, `Settings`) rendered without headers. Icons are provided by `Ionicons`.
+- **Root Layout** (`app/_layout.tsx`): Initializes the session store on launch, wraps shared providers, and conditionally renders either the authenticated tab shell or the unauthenticated login flow based on `session.status`.
+- **Tab Layout** (`app/(tabs)/_layout.tsx`): Declares the four primary tabs (`Feed`, `Record`, `Profile`, `Settings`) without headers and assigns their Ionicons.
 - **Global Audio Player** (`src/components/audio/Player.tsx`): Sticky bottom sheet overlay rendered on the feed screen once a track is selected. Persistently exposes playback/seek controls and a reset action.
 
 ## Screen Responsibilities
@@ -59,9 +59,9 @@ This document provides an implementation-facing specification for the current Ex
 
 ## Primary User Journeys
 - **Cold Start & Session Restore**
-  1. App launches `RootNavigator`.
+  1. App launches the Expo Router root layout.
   2. `session.initialize` reads secure token; if valid, hydrate user and following map.
-  3. Authenticated users land on `Main` tabs; unauthenticated users stay on `Login`.
+  3. Authenticated users land on the `(tabs)` group; unauthenticated users stay on `login`.
 
 - **Email Magic-Link Sign-In**
   1. Enter email on login screen; request magic link.

@@ -18,6 +18,7 @@
     "android": {
       "package": "com.novoice.app"
     },
-    "web": {}
+    "web": {},
+    "plugins": ["expo-router"]
   }
 }

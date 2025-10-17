@@ -26,3 +26,4 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+export { default } from 'expo-router/entry';
