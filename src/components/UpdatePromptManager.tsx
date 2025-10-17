@@ -3,14 +3,17 @@ import { Alert, AppState, AppStateStatus } from 'react-native';
 import * as Updates from 'expo-updates';
 
 const UpdatePromptManager: React.FC = () => {
+  const isCheckingRef = React.useRef(false);
+  const hasPromptedRef = React.useRef(false);
+
+  const isDevelopment = process.env.NODE_ENV !== 'production';
+
   React.useEffect(() => {
-    if (__DEV__ || !Updates.isEnabled) {
-      return;
+    if (isDevelopment || !Updates.isEnabled) {
+      return undefined;
     }
 
     let isMounted = true;
-    const isCheckingRef = React.useRef(false);
-    const hasPromptedRef = React.useRef(false);
 
     const promptForReload = () => {
       if (hasPromptedRef.current) {
@@ -99,7 +102,7 @@ const UpdatePromptManager: React.FC = () => {
       appStateSubscription.remove();
       updatesSubscription.remove();
     };
-  }, []);
+  }, [isDevelopment]);
 
   return null;
 };
