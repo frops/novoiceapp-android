@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import { useFeedStore } from '../../state/feed';
 import { usePlayerStore } from '../../state/player';
-import { Player } from '../../components/audio/Player';
+import Player from '../../components/audio/Player';
 
-export function FeedScreen(): React.JSX.Element {
+const FeedScreen: React.FC = () => {
   const posts = useFeedStore((state) => state.posts);
   const fetchNext = useFeedStore((state) => state.fetchNext);
   const refresh = useFeedStore((state) => state.refresh);
@@ -102,8 +102,9 @@ export function FeedScreen(): React.JSX.Element {
       <Player />
     </View>
   );
-}
+};
 
+export { FeedScreen };
 export default FeedScreen;
 
 const styles = StyleSheet.create({

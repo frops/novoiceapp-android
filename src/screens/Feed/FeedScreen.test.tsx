@@ -1,7 +1,7 @@
+/* eslint-env jest */
 import React from 'react';
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
-import { FeedScreen } from './FeedScreen';
+import FeedScreen from './FeedScreen';
 
 type FeedSlice = {
   posts: any[];

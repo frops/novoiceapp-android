@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useSessionStore } from '../../state/session';
 
-export function LoginScreen(): React.JSX.Element {
+const LoginScreen: React.FC = () => {
   const status = useSessionStore((state) => state.status);
   const requestMagicLink = useSessionStore((state) => state.requestMagicLink);
   const confirmMagicLink = useSessionStore((state) => state.confirmMagicLink);
@@ -112,8 +112,9 @@ export function LoginScreen(): React.JSX.Element {
       </View>
     </KeyboardAvoidingView>
   );
-}
+};
 
+export { LoginScreen };
 export default LoginScreen;
 
 const styles = StyleSheet.create({

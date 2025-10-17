@@ -1,7 +1,7 @@
+/* eslint-env jest */
 import React from 'react';
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { ProfileScreen } from './ProfileScreen';
+import ProfileScreen from './ProfileScreen';
 
 type SessionSlice = {
   user?: {

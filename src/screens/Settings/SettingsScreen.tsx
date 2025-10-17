@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSessionStore } from '../../state/session';
 
-export function SettingsScreen(): React.JSX.Element {
+const SettingsScreen: React.FC = () => {
   const logout = useSessionStore((state) => state.logout);
   const token = useSessionStore((state) => state.token);
 
@@ -40,8 +40,9 @@ export function SettingsScreen(): React.JSX.Element {
       </View>
     </View>
   );
-}
+};
 
+export { SettingsScreen };
 export default SettingsScreen;
 
 const styles = StyleSheet.create({

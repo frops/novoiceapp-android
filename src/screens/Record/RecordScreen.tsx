@@ -30,7 +30,7 @@ const uploadRecording = async (uri: string) => {
   return fileUrl;
 };
 
-export function RecordScreen(): React.JSX.Element {
+const RecordScreen: React.FC = () => {
   const user = useSessionStore((state) => state.user);
   const addPost = useFeedStore((state) => state.addPost);
   const recordingRef = useRef<Audio.Recording | null>(null);
@@ -220,8 +220,9 @@ export function RecordScreen(): React.JSX.Element {
       </View>
     </View>
   );
-}
+};
 
+export { RecordScreen };
 export default RecordScreen;
 
 const styles = StyleSheet.create({

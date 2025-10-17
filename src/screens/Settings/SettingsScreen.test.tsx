@@ -1,8 +1,8 @@
+/* eslint-env jest */
 import React from 'react';
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { fireEvent, render } from '@testing-library/react-native';
 import { Linking } from 'react-native';
-import { SettingsScreen } from './SettingsScreen';
+import SettingsScreen from './SettingsScreen';
 
 type SessionSlice = {
   logout: jest.Mock;

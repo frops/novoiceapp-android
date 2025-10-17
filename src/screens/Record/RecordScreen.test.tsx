@@ -1,8 +1,8 @@
+/* eslint-env jest */
 import React from 'react';
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Audio } from 'expo-av';
-import { RecordScreen } from './RecordScreen';
+import RecordScreen from './RecordScreen';
 import { mockBackend } from '../../services/mockBackend';
 
 type SessionSlice = {

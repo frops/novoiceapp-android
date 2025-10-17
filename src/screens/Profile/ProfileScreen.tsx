@@ -20,7 +20,7 @@ const suggestedCreators = [
   { id: 'creator-3', name: 'Startup Stories' }
 ];
 
-export function ProfileScreen(): React.JSX.Element {
+const ProfileScreen: React.FC = () => {
   const user = useSessionStore((state) => state.user);
   const updateProfile = useSessionStore((state) => state.updateProfile);
   const toggleFollow = useSessionStore((state) => state.toggleFollow);
@@ -173,8 +173,9 @@ export function ProfileScreen(): React.JSX.Element {
       </View>
     </ScrollView>
   );
-}
+};
 
+export { ProfileScreen };
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
