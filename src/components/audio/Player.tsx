@@ -73,6 +73,9 @@ const Player: React.FC = () => {
   );
 };
 
+export { Player };
+export default Player;
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -136,5 +139,3 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   }
 });
-
-export default Player;
