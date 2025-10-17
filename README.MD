@@ -87,7 +87,16 @@ If integrating with a real backend, replace the mock presigned upload logic in `
 - `npm run ios` – Launch the app on iOS simulator (requires macOS).
 - `npm run web` – Start Expo for web preview.
 - `npm run lint` – Run ESLint once configured.
+- `npm run format` – Format source files with Prettier.
 - `npm test` – Execute Jest UI tests for the core screens and flows.
+
+## Formatting Workflow
+
+Code style is enforced with Prettier and ESLint:
+
+- Run `npm run format` to apply Prettier conventions (two-space indentation, single quotes, trailing commas) across TypeScript, JavaScript, JSON, and Markdown files.
+- `npm run lint` now includes `eslint-config-prettier` so Prettier formatting rules are respected during linting.
+- Consider formatting staged files before committing to keep diffs clean: `npx prettier --write <path>`.
 
 ## Testing
 
