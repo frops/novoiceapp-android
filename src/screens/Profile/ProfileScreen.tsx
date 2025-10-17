@@ -175,6 +175,9 @@ const ProfileScreen: React.FC = () => {
   );
 };
 
+export { ProfileScreen };
+export default ProfileScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -309,5 +312,3 @@ const styles = StyleSheet.create({
     color: '#64748b'
   }
 });
-
-export default ProfileScreen;

@@ -104,6 +104,9 @@ const FeedScreen: React.FC = () => {
   );
 };
 
+export { FeedScreen };
+export default FeedScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -170,5 +173,3 @@ const styles = StyleSheet.create({
     marginTop: 48
   }
 });
-
-export default FeedScreen;
