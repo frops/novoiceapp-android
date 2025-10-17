@@ -222,6 +222,9 @@ const RecordScreen: React.FC = () => {
   );
 };
 
+export { RecordScreen };
+export default RecordScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -295,5 +298,3 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   }
 });
-
-export default RecordScreen;

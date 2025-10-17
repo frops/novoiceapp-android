@@ -39,6 +39,10 @@ Expo Router powers navigation using the files under `app/`, while shared UI and 
 
 > **Note:** Binary branding assets are intentionally excluded so this repository stays text-only. Add your own icons, splash imagery, or favicons locally under an `assets/` directory when building release binaries.
 
+## Native project configuration
+
+This repository tracks only the managed Expo project. The native `android/` and `ios/` directories are ignored so all platform-specific changes flow through Expo config plugins and EAS Build profiles. When a new native capability is required, add the corresponding config plugin (either from the Expo SDK or a custom plugin under `plugins/`) and ensure the change is reflected in `app.json`/`app.config.ts`. EAS Build will materialize the full native projects during CI or local builds based on these declarative settings.
+
 ## Getting Started
 
 1. Install dependencies (requires Node.js 18+ and npm or yarn):
@@ -47,13 +51,45 @@ Expo Router powers navigation using the files under `app/`, while shared UI and 
    npm install
    ```
 
-2. Start the Expo development server:
+2. Install the Expo Dev Client dependency so native modules resolve correctly:
 
    ```bash
-   npm run start
+   npx expo install expo-dev-client
    ```
 
-3. Choose the Android option in the Expo CLI to launch the app on a connected device or emulator.
+   > **Why now?** Installing the dev client during onboarding ensures everyone moves off Expo Go before hitting APIs that require native modules.
+
+3. Build and install a native development client for your platform (the project ships with helper scripts):
+
+   ```bash
+   npm run build:dev:android
+   # or
+   npm run build:dev:ios
+   ```
+
+   Follow the prompts to install the resulting binary on your emulator or device, then launch it once to register with Metro.
+
+4. Start the Expo development server with dev-client support:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Use the platform-specific shortcuts to open the dev client directly:
+
+   ```bash
+   npm run dev:android
+   # or
+   npm run dev:ios
+   ```
+
+   These commands bypass Expo Go entirely and attach Metro to the installed dev client. See [`docs/native-dev-builds.md`](docs/native-dev-builds.md) for end-to-end instructions, including how to produce local EAS builds when native dependencies change.
+
+### Dependency management
+
+- **Always install native modules with Expo's compatibility layer:** run `npx expo install <package>` instead of `npm install <package>` so the version recorded in `package.json` matches the Expo SDK 54 bundle. This keeps React Native, Expo, and unimodule APIs in sync with the managed workflow.
+- After changing dependencies, run `npm run lint`, `npx tsc --noEmit`, and `npm test` to confirm the upgrade did not break the TypeScript types, lint rules, or Jest suite. Consider wiring these into a pre-commit hook (e.g., `npx simple-git-hooks`) if you update packages frequently.
+- When aligning existing versions, consult `node_modules/expo/bundledNativeModules.json` or re-run `npx expo install` for each package to adopt the recommended semver range before pushing.
 
 ### Mock backend services
 
