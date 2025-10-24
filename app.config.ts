@@ -15,6 +15,15 @@ type VersioningState = {
 
 const VERSIONING_FILE = path.resolve(__dirname, 'app', 'versioning.json');
 
+const runtimePolicy = (
+  policy:
+    | 'appVersion'
+    | 'sdkVersion'
+    | 'nativeVersion'
+    | 'fingerprint'
+    | 'fingerprintExperimental'
+): ExpoConfig['runtimeVersion'] => ({ policy } as ExpoConfig['runtimeVersion']);
+
 const normalizeRuntimeVersion = (
   value: unknown
 ): ExpoConfig['runtimeVersion'] => {
@@ -29,13 +38,24 @@ const normalizeRuntimeVersion = (
     typeof (value as { policy?: unknown }).policy === 'string'
   ) {
     const policy = (value as { policy: string }).policy;
-    if (
-      policy === 'appVersion' ||
-      policy === 'sdkVersion' ||
-      policy === 'nativeVersion' ||
-      policy === 'fingerprintExperimental'
-    ) {
-      return { policy };
+    if (policy === 'fingerprintExperimental') {
+      return runtimePolicy('fingerprintExperimental');
+    }
+
+    if (policy === 'fingerprint') {
+      return runtimePolicy('fingerprint');
+    }
+
+    if (policy === 'appVersion') {
+      return runtimePolicy('appVersion');
+    }
+
+    if (policy === 'sdkVersion') {
+      return runtimePolicy('sdkVersion');
+    }
+
+    if (policy === 'nativeVersion') {
+      return runtimePolicy('nativeVersion');
     }
   }
 
