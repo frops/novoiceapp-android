@@ -2,6 +2,16 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
+type TabBarIconProps = {
+  color: string;
+  size: number;
+};
+
+const renderIcon = (name: keyof typeof Ionicons.glyphMap) =>
+  ({ color, size }: TabBarIconProps) => (
+    <Ionicons name={name} size={size} color={color} />
+  );
+
 export default function TabsLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
@@ -9,36 +19,28 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="musical-notes" size={size} color={color} />
-          )
+          tabBarIcon: renderIcon('musical-notes'),
         }}
       />
       <Tabs.Screen
         name="record"
         options={{
           title: 'Record',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="mic-circle" size={size} color={color} />
-          )
+          tabBarIcon: renderIcon('mic-circle'),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle" size={size} color={color} />
-          )
+          tabBarIcon: renderIcon('person-circle'),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" size={size} color={color} />
-          )
+          tabBarIcon: renderIcon('settings'),
         }}
       />
     </Tabs>

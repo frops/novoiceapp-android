@@ -1,23 +1,36 @@
 import React from 'react';
 import { Alert, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Application from 'expo-application';
+import Constants from 'expo-constants';
 import { useSessionStore } from '../../state/session';
+
+type VersionMetadata = {
+  version?: string;
+  iosBuildNumber?: string;
+  androidVersionCode?: number;
+};
 
 const SettingsScreen: React.FC = () => {
   const logout = useSessionStore((state) => state.logout);
   const token = useSessionStore((state) => state.token);
 
-  const nativeVersion = React.useMemo(() => {
-    return (
-      Application.nativeApplicationVersion ??
-      Application.applicationVersion ??
-      'Unknown'
-    );
-  }, []);
+  const versionMetadata =
+    (Constants.expoConfig?.extra as { versionMetadata?: VersionMetadata } | undefined)
+      ?.versionMetadata;
 
-  const nativeBuild = React.useMemo(() => {
-    return Application.nativeBuildVersion ?? 'Unknown';
-  }, []);
+  const nativeVersion =
+    Application.nativeApplicationVersion ??
+    versionMetadata?.version ??
+    Constants.expoConfig?.version ??
+    'Unknown';
+
+  const nativeBuild =
+    Application.nativeBuildVersion ??
+    versionMetadata?.iosBuildNumber ??
+    (versionMetadata?.androidVersionCode
+      ? String(versionMetadata.androidVersionCode)
+      : undefined) ??
+    'Unknown';
 
   const handleSignOut = async () => {
     try {
@@ -73,12 +86,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8fafc',
     padding: 24,
-    gap: 24
+    gap: 24,
   },
   heading: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#0f172a'
+    color: '#0f172a',
   },
   card: {
     backgroundColor: '#ffffff',
@@ -89,43 +102,43 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 12 },
-    elevation: 4
+    elevation: 4,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 16
+    paddingVertical: 16,
   },
   rowLabel: {
     fontSize: 16,
-    color: '#1e293b'
+    color: '#1e293b',
   },
   rowAction: {
     color: '#2563eb',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   divider: {
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#e2e8f0'
+    backgroundColor: '#e2e8f0',
   },
   danger: {
-    color: '#dc2626'
+    color: '#dc2626',
   },
   meta: {
     padding: 16,
     borderRadius: 12,
-    backgroundColor: '#e2e8f0'
+    backgroundColor: '#e2e8f0',
   },
   metaGroup: {
-    gap: 12
+    gap: 12,
   },
   metaText: {
     color: '#475569',
-    marginBottom: 4
+    marginBottom: 4,
   },
   metaValue: {
     color: '#1e293b',
-    fontVariant: ['tabular-nums']
-  }
+    fontVariant: ['tabular-nums'],
+  },
 });
