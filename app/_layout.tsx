@@ -5,7 +5,6 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSessionStore } from '../src/state/session';
-import UpdatePromptManager from '../src/components/UpdatePromptManager';
 
 const styles = StyleSheet.create({
   loadingContainer: {
@@ -41,7 +40,6 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <UpdatePromptManager />
         <StatusBar style="auto" />
         <Stack screenOptions={{ headerShown: false }}>
           {isAuthenticated ? (

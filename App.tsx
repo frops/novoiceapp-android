@@ -5,7 +5,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
-import UpdatePromptManager from './src/components/UpdatePromptManager';
 
 export default function App() {
   const [navigationKey, setNavigationKey] = React.useState(0);
@@ -18,7 +17,6 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ErrorBoundary onRetry={handleRecover} onReset={handleRecover}>
-          <UpdatePromptManager />
           <NavigationContainer key={navigationKey}>
             <StatusBar style="auto" />
             <RootNavigator />

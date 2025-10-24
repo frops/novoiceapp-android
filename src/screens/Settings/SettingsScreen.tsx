@@ -7,17 +7,12 @@ const SettingsScreen: React.FC = () => {
   const logout = useSessionStore((state) => state.logout);
   const token = useSessionStore((state) => state.token);
 
-  const nativeVersion = React.useMemo(() => {
-    return (
-      Application.nativeApplicationVersion ??
-      Application.applicationVersion ??
-      'Unknown'
-    );
-  }, []);
+  const nativeVersion =
+    Application.nativeApplicationVersion ??
+    Application.applicationVersion ??
+    'Unknown';
 
-  const nativeBuild = React.useMemo(() => {
-    return Application.nativeBuildVersion ?? 'Unknown';
-  }, []);
+  const nativeBuild = Application.nativeBuildVersion ?? 'Unknown';
 
   const handleSignOut = async () => {
     try {

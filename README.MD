@@ -192,7 +192,7 @@ The EAS workflow authenticates using an Expo access token stored as the `EXPO_TO
 
 ### Over-the-air Updates
 
-The client now bundles `expo-updates` for OTA delivery. Set the `extra.eas.projectId` field in `app.json` to the UUID generated for this project in the Expo dashboard (replace the `REPLACE_WITH_PROJECT_ID` placeholder). Publish updates to the desired channel using `eas update --branch <branch>`; devices will fetch them on launch and when returning to the foreground. Users receive an in-app prompt to restart once a new bundle is downloaded.
+The client bundles `expo-updates` for OTA delivery. Set the `extra.eas.projectId` field in `app.json` to the UUID generated for this project in the Expo dashboard (replace the `REPLACE_WITH_PROJECT_ID` placeholder). Publish updates to the desired channel using `eas update --branch <branch>`; devices fetch them on launch and when returning to the foreground. Updates are applied the next time the user relaunches the app; there is no in-app restart prompt.
 ### Release management
 
 Follow the step-by-step guide in [`docs/release-process.md`](docs/release-process.md) when preparing store submissions. The checklist explains how semantic versions, automated build number increments, and EAS build hooks work together so each release remains unique across Android and iOS.
