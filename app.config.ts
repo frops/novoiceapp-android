@@ -15,6 +15,33 @@ type VersioningState = {
 
 const VERSIONING_FILE = path.resolve(__dirname, 'app', 'versioning.json');
 
+const normalizeRuntimeVersion = (
+  value: unknown
+): ExpoConfig['runtimeVersion'] => {
+  if (typeof value === 'string' || typeof value === 'undefined') {
+    return value;
+  }
+
+  if (
+    value &&
+    typeof value === 'object' &&
+    'policy' in value &&
+    typeof (value as { policy?: unknown }).policy === 'string'
+  ) {
+    const policy = (value as { policy: string }).policy;
+    if (
+      policy === 'appVersion' ||
+      policy === 'sdkVersion' ||
+      policy === 'nativeVersion' ||
+      policy === 'fingerprintExperimental'
+    ) {
+      return { policy };
+    }
+  }
+
+  return undefined;
+};
+
 const isPositiveInteger = (value: unknown): value is number =>
   typeof value === 'number' && Number.isInteger(value) && value > 0;
 
@@ -96,7 +123,21 @@ const resolveVersioning = (): [VersioningState, VersionSource] => {
 };
 
 export default ({ config }: ConfigContext): ExpoConfig => {
-  const baseConfig = appJson.expo ?? {};
+  const baseConfig = (appJson.expo ?? {}) as Partial<ExpoConfig>;
+  const {
+    runtimeVersion: baseRuntimeVersion,
+    orientation: baseOrientation,
+    name: baseName,
+    slug: baseSlug,
+    ...restBaseConfig
+  } = baseConfig;
+  const {
+    runtimeVersion: overrideRuntimeVersion,
+    orientation: overrideOrientation,
+    name: overrideName,
+    slug: overrideSlug,
+    ...restConfig
+  } = config;
   const [versioning, versionSource] = resolveVersioning();
 
   const version =
@@ -106,23 +147,36 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     packageJson.version ??
     '1.0.0';
 
+  const runtimeVersion =
+    normalizeRuntimeVersion(overrideRuntimeVersion) ??
+    normalizeRuntimeVersion(baseRuntimeVersion) ??
+    { policy: 'appVersion' as const };
+
+  const orientation = overrideOrientation ?? baseOrientation;
+  const name = overrideName ?? baseName ?? 'NovoiceApp';
+  const slug = overrideSlug ?? baseSlug ?? 'novoiceapp-android';
+
   return {
-    ...baseConfig,
-    ...config,
+    ...restBaseConfig,
+    ...restConfig,
     version,
+    runtimeVersion,
+    orientation,
+    name,
+    slug,
     ios: {
-      ...baseConfig.ios,
-      ...config.ios,
+      ...restBaseConfig.ios,
+      ...restConfig.ios,
       buildNumber: versioning.iosBuildNumber,
     },
     android: {
-      ...baseConfig.android,
-      ...config.android,
+      ...restBaseConfig.android,
+      ...restConfig.android,
       versionCode: versioning.androidVersionCode,
     },
     extra: {
-      ...baseConfig.extra,
-      ...config.extra,
+      ...restBaseConfig.extra,
+      ...restConfig.extra,
       versionMetadata: {
         source: versionSource,
         version,

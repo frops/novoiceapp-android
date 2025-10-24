@@ -24,8 +24,7 @@ const uploadRecording = async (uri: string) => {
   }
   await FileSystem.uploadAsync(uploadUrl, uri, {
     httpMethod: 'PUT',
-    uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
-    mimeType: 'audio/m4a'
+    mimeType: 'audio/m4a',
   });
   return fileUrl;
 };
