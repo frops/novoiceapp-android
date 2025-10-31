@@ -15,23 +15,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "package": "com.novoice.app"
-    },
-    "updates": {
-      "enabled": true,
-      "checkAutomatically": "ON_LOAD",
-      "fallbackToCacheTimeout": 0
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "web": {},
-    "plugins": ["expo-router"],
-    "extra": {
-      "eas": {
-        "projectId": "REPLACE_WITH_PROJECT_ID"
-      }
-    }
+    "android": {},
+    "web": {}
   }
 }
